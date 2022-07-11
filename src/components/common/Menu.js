@@ -90,6 +90,7 @@ const MenuSubItem = styled.div`
 
   padding: 0.5rem 0;
 `;
+
 const Menu = ({ onSelect, menu }) => {
   return (
     <MenuBlock>
