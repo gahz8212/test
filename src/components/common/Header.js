@@ -7,7 +7,7 @@ const HeaderBlock = styled.div`
   width: 100%;
   height: 5rem;
   display: flex;
-  background: yellow;
+  /* background: yellow; */
   /* box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.2); */
   /* align-items: center; */
 `;

@@ -1,11 +1,13 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import Responsive from "./Responsive";
+import { Link } from "react-router-dom";
 const Menus = [
-  { type: "all", text: "Home", sub: [] },
+  { type: "all", text: "게시판", link: "/", sub: [] },
   {
     type: "parts",
     text: "PARTS",
+    link: undefined,
     sub: [
       { type: "history", text: "이력" },
       { type: "config", text: "설정" },
@@ -20,10 +22,12 @@ const Menus = [
       { type: "orderList", text: "발주내역" },
       { type: "orderConfirm", text: "발주확인" },
     ],
+    link: undefined,
   },
   {
     type: "export",
     text: "EXPORT",
+    link: undefined,
     sub: [
       { type: "schedule", text: "스케줄" },
       { type: "document", text: "서류작성" },
@@ -33,6 +37,7 @@ const Menus = [
   {
     type: "config",
     text: "CONFIG",
+    link: undefined,
     sub: [
       { type: "userinfo", text: "회원정보" },
       { type: "help", text: "도움말" },
@@ -101,11 +106,16 @@ const Menu = ({ onSelect, menu }) => {
             onClick={() => onSelect({ item: item.type })}
             active={menu.item === item.type}
           >
-            {item.text}
+            {item.link ? (
+              <Link to={item.link}>{item.text}</Link>
+            ) : (
+              <div>{item.text}</div>
+            )}
           </MenuItem>
           <MenuSubItem visible={menu.item === item.type}>
             {item.sub.map((s) => (
               <SubItem
+                key={s.text}
                 onClick={() => onSelect({ item: item.type, sub: s.type })}
                 active={menu.sub === s.type}
               >

@@ -2,16 +2,18 @@ import React, { useRef, useEffect } from "react";
 import Quill from "quill";
 import "quill/dist/quill.bubble.css";
 import styled from "styled-components";
-import Responsive from "../common/Responsive";
+import Responsive from "../../common/Responsive";
 const EditorBlock = styled(Responsive)`
-  padding: 6rem;
+  padding: 8rem 3rem 1rem;
+  /* background: yellow; */
 `;
 const StyleInput = styled.input`
+  margin: 0 auto;
   border: none;
   outline: none;
-  font-size: 4rem;
-  width: 100%;
-  border-bottom: 1px solid green;
+  font-size: 3rem;
+  width: 70%;
+  border-bottom: 3px solid green;
   &:hover {
     background: lightgreen;
     &::placeholder {
@@ -21,9 +23,10 @@ const StyleInput = styled.input`
 `;
 const QuillWrapper = styled.div`
   .ql-editor {
+    width: 70%;
     font-size: 1.125rem;
     line-height: 1.5;
-    height: 250px;
+    height: 200px;
     overflow: auto;
   }
   .ql-editor.ql-blank::before {
@@ -42,7 +45,7 @@ const Editor = () => {
         toolbar: [
           [{ header: "1" }, { header: "2" }],
           ["bold", "italic", "underline", "strike"],
-          [{ order: "list" }, { order: "bullet" }],
+          [{ list: "order" }, { list: "bullet" }],
           ["blockquote", "code-block", "link", "image"],
         ],
       },
@@ -68,10 +71,11 @@ const Editor = () => {
   return (
     <EditorBlock>
       <StyleInput
-        placeholder="내용을 입력 하세요"
+        placeholder="제목을 입력 하세요"
         // onChange={onChangeTitle}
         // value={title}
       />
+
       <QuillWrapper>
         <div ref={quillElement} />
       </QuillWrapper>
