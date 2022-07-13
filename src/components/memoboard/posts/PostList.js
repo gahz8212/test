@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Responsive from "../../common/Responsive";
-const PostListBlock = styled(Responsive)`
-  padding: 0 6rem;
-`;
+import SubInfo from "../../common/SubInfo";
+import { Link } from "react-router-dom";
+const PostListBlock = styled(Responsive)``;
 const PostItemBlock = styled.div`
+  margin: 0 auto;
+  width: 70%;
   &:first-child {
     margin-top: 1rem;
   }
@@ -18,20 +20,7 @@ const PostItemBlock = styled.div`
     font-size: 1.125rem;
   }
 `;
-const SubInfo = ({ post }) => {
-  return (
-    <div style={{ marginTop: "0.5rem", fontWeight: "bold", color: "darkgray" }}>
-      <span>{post.name}</span>
-      <span
-        className="middle-dot"
-        style={{ margin: "0 1rem", fontWeight: "bolder" }}
-      >
-        &#183;
-      </span>
-      <span>{new Date(Date.now()).toLocaleDateString()}</span>
-    </div>
-  );
-};
+
 const ContentBlock = styled.div`
   margin-top: 0.5rem;
   font-size: 1.125rem;
@@ -43,7 +32,9 @@ const PostList = ({ posts }) => {
       {posts.map((post) => {
         return (
           <PostItemBlock key={post.id}>
-            <b className="title-area">{post.title}</b>
+            <b className="title-area">
+              <Link to={`@kim/${post.id}`}>{post.title}</Link>
+            </b>
             <SubInfo post={post} />
             <ContentBlock
               dangerouslySetInnerHTML={{ __html: post.content }}

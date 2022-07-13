@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Responsive from "../../common/Responsive";
-const TagBoxBlock = styled(Responsive)`
-  padding: 0 3rem;
-`;
+const TagBoxBlock = styled(Responsive)``;
 const TagForm = styled.form`
+  margin-left: 15%;
   display: flex;
   width: 300px;
   border: 2px solid black;
@@ -43,6 +42,7 @@ const Tag = styled.div`
 `;
 const TagListBlock = styled.div`
   margin-top: 0.5rem;
+  margin-left: 15%;
   display: flex;
 `;
 const TagItem = React.memo(({ tag, onRemove }) => {
@@ -95,5 +95,5 @@ const Tagbox = ({ tags }) => {
 
 export default Tagbox;
 Tagbox.defaultProps = {
-  tags: ["a", "b"],
+  tags: [],
 };

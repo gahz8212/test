@@ -4,10 +4,10 @@ import "quill/dist/quill.bubble.css";
 import styled from "styled-components";
 import Responsive from "../../common/Responsive";
 const EditorBlock = styled(Responsive)`
-  padding: 8rem 3rem 1rem;
-  /* background: yellow; */
+  margin: 8rem auto 2rem;
 `;
 const StyleInput = styled.input`
+  display: block;
   margin: 0 auto;
   border: none;
   outline: none;
@@ -24,6 +24,7 @@ const StyleInput = styled.input`
 const QuillWrapper = styled.div`
   .ql-editor {
     width: 70%;
+    margin: 0 auto;
     font-size: 1.125rem;
     line-height: 1.5;
     height: 200px;
