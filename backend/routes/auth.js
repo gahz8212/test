@@ -15,7 +15,7 @@ router.post("/join", async (req, res) => {
     }
     const hash = bcrypt.hash(password, 12);
     await User.create({ email, password: hash, nick });
-    return res.status(200).json("회원가입 성공");
+    return res.status(200).json("join_success");
   } catch (e) {
     console.error(e);
     return res.status(400).json({ e });
@@ -33,7 +33,7 @@ router.post("/login", (req, res) => {
       if (loginError) {
         return res.status(400).json(loginError);
       }
-      return res.status(200).json("로그인 성공");
+      return res.status(200).json("login_success");
     });
   })(req, res);
 });

@@ -19,6 +19,10 @@ const ButtonStyle = css`
     css`
       padding: 0.3rem 0.5rem;
       width: 100%;
+    `}${(props) =>
+    props.marginTop1rem &&
+    css`
+      margin-top: 1rem;
     `}
 `;
 const StyleLink = styled(Link)`
