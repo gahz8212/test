@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../../components/common/Header";
+import HeaderContainer from "../../containers/common/HeaderContainer";
 import WriteButtonContainer from "../../containers/memoboard/posts/WriteButtonContainer";
 import PostListContainer from "../../containers/memoboard/posts/PostListContainer";
 const MainForm = () => {
   return (
     <div>
-      <Header></Header>
+      <HeaderContainer></HeaderContainer>
       <WriteButtonContainer />
       <PostListContainer />
     </div>

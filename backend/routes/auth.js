@@ -8,12 +8,13 @@ router.get("/", async (req, res) => {
 });
 router.post("/join", async (req, res) => {
   const { email, password, nick } = req.body;
+  console.log(email, password, nick);
   try {
     const exUser = await User.findOne({ where: { email } });
     if (exUser) {
       return res.status(409).json("중복된 이메일 입니다.");
     }
-    const hash = bcrypt.hash(password, 12);
+    const hash = await bcrypt.hash(password, 12);
     await User.create({ email, password: hash, nick });
     return res.status(200).json("join_success");
   } catch (e) {

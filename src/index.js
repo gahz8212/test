@@ -9,14 +9,23 @@ import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import rootReducer, { rootSaga } from "./modules/index";
-
+import { tempSetUser, check } from "./modules/user";
 const sagaMiddleware = createSagaMiddleware(rootSaga);
-
+const LoadUser = () => {
+  try {
+    const user = localStorage.getItem("user");
+    if (user) {
+      store.dispatch(tempSetUser(user));
+      store.dispatch(check());
+    }
+  } catch (e) {}
+};
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 sagaMiddleware.run(rootSaga);
+LoadUser();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

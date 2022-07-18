@@ -18,7 +18,7 @@ const JoinForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     // const { email, password, nick } = form;
-    console.log(form);
+    // console.log(form);
     dispatch(join(form));
   };
   useEffect(() => {

@@ -47,7 +47,7 @@ const Menus = [
 const MenuBlock = styled(Responsive)`
   display: flex;
   justify-content: space-around;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 `;
 const MenuItem = styled.div`
   cursor: pointer;
