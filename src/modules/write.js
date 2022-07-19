@@ -6,6 +6,8 @@ import * as postAPI from "../lib/api/post";
 import { takeLatest } from "redux-saga/effects";
 const [WRITE_POST, WRITE_POST_SUCCESS, WRITE_POST_FAILURE] =
   createRequestActionTypes("write/WRITE_POST");
+const [UPDATE_POST, UPDATE_POST_SUCCESS, UPDATE_POST_FAILURE] =
+  createRequestActionTypes("write/UPDATE_POST");
 const INITIALIZE_WRITE = "write/INITIALIZE_WRITE";
 const CHANGE_WRITE = "write/CHANGE_WRITE";
 const SET_ORIGINAL_POST = "write/SET_OROGINAL_POST";
@@ -17,6 +19,10 @@ export const changeWrite = createAction(CHANGE_WRITE, ({ key, value }) => ({
 export const writePost = createAction(
   WRITE_POST,
   ({ title, content, tags }) => ({ title, content, tags })
+);
+export const updatePost = createAction(
+  UPDATE_POST,
+  ({ title, content, tags, postId }) => ({ title, content, tags, postId })
 );
 export const setOriginalPost = createAction(SET_ORIGINAL_POST, (post) => post);
 const writePostSaga = createRequestSaga(WRITE_POST, postAPI.write);

@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
     const posts = await Post.findAll({
       include: [
         { model: User, attributes: ["nick"] },
-        { model: "Hashtag", attributes: ["title"] },
+        { model: Hashtag, attributes: ["title"] },
       ],
     });
     return res.status(200).json(posts);
@@ -48,6 +48,16 @@ router.get("/write/:postId", async (req, res) => {
   } catch (e) {
     console.error(e);
     return res.status(400).json(e);
+  }
+});
+router.delete("/remove/:postId", async (req, res) => {
+  const { postId } = req.params;
+
+  try {
+    await Post.destroy({ where: { id: postId } });
+    return res.send("delete_sucess");
+  } catch (e) {
+    console.error(e);
   }
 });
 module.exports = router;

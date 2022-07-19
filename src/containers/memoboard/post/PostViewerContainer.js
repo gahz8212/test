@@ -3,8 +3,9 @@ import PostViewer from "../../../components/memoboard/post/PostViewer";
 import PostActionButtons from "./PostActionButtons";
 import { useNavigate, useParams } from "react-router-dom";
 import { readPost } from "../../../modules/post";
+import { setOriginalPost } from "../../../modules/write";
 import { useDispatch, useSelector } from "react-redux";
-
+import { remove } from "../../../lib/api/post";
 const PostViewerContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,10 +19,16 @@ const PostViewerContainer = () => {
     navigate("/");
   };
   const onEdit = () => {
+    setOriginalPost(post);
     navigate("/write");
   };
   const onRemove = () => {
     setVisible(true);
+  };
+  const onConfirm = () => {
+    remove(postId);
+    setVisible(false);
+    navigate("/");
   };
   const onCancel = () => {
     setVisible(false);
@@ -40,6 +47,7 @@ const PostViewerContainer = () => {
           onGoHome={onGoHome}
           onEdit={onEdit}
           onRemove={onRemove}
+          onConfirm={onConfirm}
           visible={visible}
           onCancel={onCancel}
         />
