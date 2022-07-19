@@ -25,7 +25,7 @@ const Header = ({ user, onLogout }) => {
   return (
     <>
       <LoginBlock>
-        <img src={logo} alt="logo" />
+        {<img src={logo} alt="logo" />}
         {user ? (
           <Button onClick={onLogout}>로그아웃</Button>
         ) : (

@@ -14,10 +14,14 @@ const PostButtonsBlock = styled(Responsive)`
     margin-left: 1rem;
   }
 `;
-const PostButtons = ({ originalPostId }) => {
+const PostButtons = ({ originalPostId, onPublish, onUpdate }) => {
   return (
     <PostButtonsBlock>
-      {originalPostId ? <Button>수정</Button> : <Button>등록</Button>}
+      {originalPostId ? (
+        <Button onClick={onUpdate}>수정</Button>
+      ) : (
+        <Button onClick={onPublish}>등록</Button>
+      )}
       <Button to="/">취소</Button>
     </PostButtonsBlock>
   );

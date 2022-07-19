@@ -3,8 +3,10 @@ import { all } from "redux-saga/effects";
 import loading from "./loading";
 import auth, { authSaga } from "./auth";
 import user, { userSaga } from "./user";
-const rootReducer = combineReducers({ loading, auth, user });
+import write, { writeSaga } from "./write";
+import post, { postSaga } from "./post";
+const rootReducer = combineReducers({ loading, auth, user, write, post });
 export default rootReducer;
 export function* rootSaga() {
-  yield all([authSaga(), userSaga()]);
+  yield all([authSaga(), userSaga(), writeSaga(), postSaga()]);
 }

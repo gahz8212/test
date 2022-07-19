@@ -26,7 +26,7 @@ const JoinForm = () => {
   }, [dispatch]);
   useEffect(() => {
     if (authError) {
-      return null;
+      return;
     }
     if (auth === "join_success") {
       navigate("/login");

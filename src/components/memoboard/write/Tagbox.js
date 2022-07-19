@@ -57,7 +57,7 @@ const TagList = React.memo(({ tags, onRemove }) => {
     </TagListBlock>
   );
 });
-const Tagbox = ({ tags }) => {
+const Tagbox = ({ onChangeTags, tags }) => {
   const [input, setInput] = useState("");
   const [localTags, setLocalTags] = useState([]);
   const onInsert = (value) => {
@@ -65,6 +65,7 @@ const Tagbox = ({ tags }) => {
     if (localTags.includes(value)) return;
     const nextTags = [...localTags, value];
     setLocalTags(nextTags);
+    onChangeTags(nextTags);
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -78,6 +79,7 @@ const Tagbox = ({ tags }) => {
   const onRemove = (value) => {
     const nextTags = localTags.filter((tag) => tag !== value);
     setLocalTags(nextTags);
+    onChangeTags(nextTags);
   };
   useEffect(() => {
     setLocalTags(tags);

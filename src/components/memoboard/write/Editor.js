@@ -34,8 +34,7 @@ const QuillWrapper = styled.div`
     left: 0;
   }
 `;
-// const Editor = ({ onChangeField, body, title }) => {
-const Editor = () => {
+const Editor = ({ onChangeField, body, title }) => {
   const quillInstance = useRef(null);
   const quillElement = useRef(null);
   useEffect(() => {
@@ -51,30 +50,30 @@ const Editor = () => {
         ],
       },
     });
-    // const quill = quillInstance.current;
-    // quill.on("text-change", (delta, oldDelta, source) => {
-    //   if (source === "user") {
-    //     onChangeField({ key: "body", value: quill.root.innerHTML });
-    //   }
-    // });
-  });
-  //   const mount = useRef(false);
-  //   useEffect(() => {
-  //     if (mount.current) {
-  //       return;
-  //     }
-  //     quillInstance.current.root.innerHTML = body;
-  //     mount.current = true;
-  //   });
-  //   const onChangeTitle = (e) => {
-  //     onChangeField({ key: "title", value: e.target.value });
-  //   };
+    const quill = quillInstance.current;
+    quill.on("text-change", (delta, oldDelta, source) => {
+      if (source === "user") {
+        onChangeField({ key: "content", value: quill.root.innerHTML });
+      }
+    });
+  }, [onChangeField]);
+  const mount = useRef(false);
+  useEffect(() => {
+    if (mount.current) {
+      return;
+    }
+    quillInstance.current.root.innerHTML = body;
+    mount.current = true;
+  }, [body]);
+  const onChangeTitle = (e) => {
+    onChangeField({ key: "title", value: e.target.value });
+  };
   return (
     <EditorBlock>
       <StyleInput
         placeholder="제목을 입력 하세요"
-        // onChange={onChangeTitle}
-        // value={title}
+        onChange={onChangeTitle}
+        value={title}
       />
 
       <QuillWrapper>

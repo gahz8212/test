@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../../components/common/Header";
+import HeaderContainer from "../../containers/common/HeaderContainer";
 
 import PostViewerContainer from "../../containers/memoboard/post/PostViewerContainer";
 const PostForm = () => {
   return (
     <div>
-      <Header />
+      <HeaderContainer />
 
       <PostViewerContainer />
     </div>
