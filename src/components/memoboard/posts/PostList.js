@@ -31,7 +31,11 @@ const ContentBlock = styled.div`
   margin-bottom: 1rem;
   height: 200px;
 `;
+<<<<<<< HEAD
 const PostList = ({ posts, postsError, loading }) => {
+=======
+const PostList = ({ posts, loading, postsError }) => {
+>>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
   if (postsError) return null;
   if (posts && loading) {
     return (
@@ -40,7 +44,11 @@ const PostList = ({ posts, postsError, loading }) => {
           return (
             <PostItemBlock key={post.id}>
               <b className="title-area">
+<<<<<<< HEAD
                 <Link to={`@${post.User.nick}}/${post.id}`}>{post.title}</Link>
+=======
+                <Link to={`@kim/${post.id}`}>{post.title}</Link>
+>>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
               </b>
               <SubInfo post={post} />
               <Tags post={post} />
@@ -56,20 +64,3 @@ const PostList = ({ posts, postsError, loading }) => {
 };
 
 export default PostList;
-PostList.defaultProps = {
-  posts: [
-    // {
-    //   id: 1,
-    //   name: "관리자",
-    //   title: "하기 휴가일정",
-    //   content:
-    //     "하기 휴가 일정이 8월3일~8월7일로 잡혔습니다.</br> 단, 출고일정에 따라 조금 변동이 있을 수 있읍니다.",
-    // },
-    // {
-    //   id: 2,
-    //   name: "관리자",
-    //   title: "전사공지",
-    //   content: "에어컨 켤때는 반드시 실외기 환기구가 열려있는지 확인 바랍니다.",
-    // },
-  ],
-};
