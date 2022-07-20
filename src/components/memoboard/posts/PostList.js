@@ -31,11 +31,8 @@ const ContentBlock = styled.div`
   margin-bottom: 1rem;
   height: 200px;
 `;
-<<<<<<< HEAD
-const PostList = ({ posts, postsError, loading }) => {
-=======
+
 const PostList = ({ posts, loading, postsError }) => {
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
   if (postsError) return null;
   if (posts && loading) {
     return (
@@ -44,11 +41,7 @@ const PostList = ({ posts, loading, postsError }) => {
           return (
             <PostItemBlock key={post.id}>
               <b className="title-area">
-<<<<<<< HEAD
                 <Link to={`@${post.User.nick}}/${post.id}`}>{post.title}</Link>
-=======
-                <Link to={`@kim/${post.id}`}>{post.title}</Link>
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
               </b>
               <SubInfo post={post} />
               <Tags post={post} />

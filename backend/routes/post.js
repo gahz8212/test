@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
       include: [
         { model: User, attributes: ["nick"] },
         { model: Hashtag, attributes: ["title"] },
-<<<<<<< HEAD
       ],
       order: [["createdAt", "desc"]],
       limit,
@@ -23,8 +22,6 @@ router.get("/", async (req, res) => {
       include: [
         { model: User, attributes: ["nick"] },
         { model: Hashtag, attributes: ["title"] },
-=======
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
       ],
     });
     const lastPage = Math.ceil(postCount.length / limit);
@@ -97,16 +94,10 @@ router.get("/read/:postId", async (req, res) => {
 });
 router.delete("/remove/:postId", async (req, res) => {
   const { postId } = req.params;
-<<<<<<< HEAD
-  try {
-    await Post.destroy({ where: { id: postId } });
-    return res.send("ok");
-=======
 
   try {
     await Post.destroy({ where: { id: postId } });
-    return res.send("delete_sucess");
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
+    return res.send("ok");
   } catch (e) {
     console.error(e);
   }

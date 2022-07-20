@@ -2,17 +2,12 @@ import React, { useState, useEffect } from "react";
 import PostViewer from "../../../components/memoboard/post/PostViewer";
 import PostActionButtons from "./PostActionButtons";
 import { useNavigate, useParams } from "react-router-dom";
-<<<<<<< HEAD
+
 import { readPost, unloadPost } from "../../../modules/post";
-import { useDispatch, useSelector } from "react-redux";
-import { setOriginalPost, initializeWrite } from "../../../modules/write";
-import { removePost } from "../../../lib/api/post";
-=======
-import { readPost } from "../../../modules/post";
 import { setOriginalPost } from "../../../modules/write";
 import { useDispatch, useSelector } from "react-redux";
-import { remove } from "../../../lib/api/post";
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
+import { removePost } from "../../../lib/api/post";
+
 const PostViewerContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,24 +21,16 @@ const PostViewerContainer = () => {
     navigate("/");
   };
   const onEdit = () => {
-<<<<<<< HEAD
-    // console.log("post", post);
-    dispatch(initializeWrite());
-    dispatch(setOriginalPost(post));
-=======
     setOriginalPost(post);
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
+
     navigate("/write");
   };
   const onRemove = () => {
     setVisible(true);
   };
   const onConfirm = () => {
-<<<<<<< HEAD
     removePost(postId);
-=======
-    remove(postId);
->>>>>>> 419d780b00efd31f4dac61efe38bb1f66e00e6e0
+
     setVisible(false);
     navigate("/");
   };
@@ -71,7 +58,6 @@ const PostViewerContainer = () => {
           onConfirm={onConfirm}
           visible={visible}
           onCancel={onCancel}
-          onConfirm={onConfirm}
         />
       }
     ></PostViewer>
