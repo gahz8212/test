@@ -38,7 +38,7 @@ const Message = styled.div`
   }
 `;
 
-const AskModal = ({ visible, onCancel, title, descript }) => {
+const AskModal = ({ visible, onCancel, title, descript, onConfirm }) => {
   if (!visible) return null;
   return (
     <AskModalBlock>
@@ -48,7 +48,9 @@ const AskModal = ({ visible, onCancel, title, descript }) => {
         </div>
         <div style={{ marginBottom: "1rem" }}>{descript}</div>
         <div className="buttons">
-          <button style={{ background: "tomato" }}>삭제</button>
+          <button style={{ background: "tomato" }} onClick={onConfirm}>
+            삭제
+          </button>
           <button style={{ background: "powderblue" }} onClick={onCancel}>
             취소
           </button>

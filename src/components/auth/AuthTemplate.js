@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import logo from "./통합관리.ico";
+import logo from "./logo.jpg";
 const AuthTemplateBlock = styled.div`
   position: absolute;
   top: 0;
@@ -18,17 +18,13 @@ const AuthTemplateBlock = styled.div`
     background: white;
     .logo {
       margin: 0.5rem 0 0.7rem;
-      text-align: center;
+      /* text-align: center;
       font-weight: bold;
       font-size: 1.25rem;
-      letter-spacing: 4px;
+      letter-spacing: 4px; */
       display: flex;
       align-items: center;
-
-      img {
-        margin-left: 1rem;
-        margin-right: 1.5rem;
-      }
+      justify-content: center;
     }
   }
 `;
@@ -38,8 +34,9 @@ const AuthTemplate = ({ children }) => {
     <AuthTemplateBlock>
       <div className="whitebox">
         <div className="logo">
-          <img src={logo} alt="logo" />
-          <Link to="/login">EUNKI</Link>
+          <Link to={"/login"}>
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
 
         {children}

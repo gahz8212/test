@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { writePost, initializeWrite } from "../../../modules/write";
+import { writePost, updatePost } from "../../../modules/write";
 import PostButtons from "../../../components/memoboard/write/PostButtons";
 import { useNavigate } from "react-router-dom";
 const PostButtonsContainer = () => {
@@ -19,7 +19,7 @@ const PostButtonsContainer = () => {
     dispatch(writePost({ title, content, tags }));
   };
   const update = () => {
-    // dispatch(updatePost({}));
+    dispatch(updatePost({ title, content, tags, postId: originalPostId }));
   };
   useEffect(() => {
     if (post) {
@@ -27,11 +27,7 @@ const PostButtonsContainer = () => {
       navigate(`/@${nick}/${id}`);
     }
   }, [navigate, post]);
-  useEffect(() => {
-    return () => {
-      dispatch(initializeWrite());
-    };
-  }, [dispatch]);
+
   return (
     <PostButtons
       originalPostId={originalPostId}

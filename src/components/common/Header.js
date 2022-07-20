@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "./Button";
 import MenuContainer from "../../containers/common/MenuContainer";
 import Responsive from "./Responsive";
-import logo from "../auth/통합관리.ico";
+import logo from "../auth/logo.jpg";
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;

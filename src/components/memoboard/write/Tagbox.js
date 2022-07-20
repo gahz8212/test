@@ -57,9 +57,11 @@ const TagList = React.memo(({ tags, onRemove }) => {
     </TagListBlock>
   );
 });
+
 const Tagbox = ({ onChangeTags, tags }) => {
   const [input, setInput] = useState("");
   const [localTags, setLocalTags] = useState([]);
+
   const onInsert = (value) => {
     if (!value) return;
     if (localTags.includes(value)) return;

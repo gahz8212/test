@@ -1,14 +1,32 @@
 const express = require("express");
 const router = express.Router();
 const { User, Post, Hashtag } = require("../models");
+const contentLengthLimiter = (content) => {
+  return content.length < 200 ? content : content.slice(0, 150);
+};
 router.get("/", async (req, res) => {
+  const { page, nick, tag } = req.query;
+  // console.log(page, nick, tag);
+  const limit = 3;
   try {
     const posts = await Post.findAll({
       include: [
         { model: User, attributes: ["nick"] },
-        { model: "Hashtag", attributes: ["title"] },
+        { model: Hashtag, attributes: ["title"] },
+      ],
+      order: [["createdAt", "desc"]],
+      limit,
+      offset: (parseInt(page, 10) - 1) * limit,
+    });
+    const postCount = await Post.findAll({
+      include: [
+        { model: User, attributes: ["nick"] },
+        { model: Hashtag, attributes: ["title"] },
       ],
     });
+    const lastPage = Math.ceil(postCount.length / limit);
+    res.set("last-page", lastPage);
+
     return res.status(200).json(posts);
   } catch (e) {
     console.error(e);
@@ -33,7 +51,31 @@ router.post("/write", async (req, res) => {
     return res.status(400).json(e);
   }
 });
-router.get("/write/:postId", async (req, res) => {
+router.patch("/write/:postId", async (req, res) => {
+  const { postId } = req.params;
+  const { title, content, tags } = req.body;
+  // console.log(title, content, tags, postId);
+  try {
+    await Post.update(
+      { title, content: contentLengthLimiter(content) },
+      { where: { id: postId } }
+    );
+    // if (tags) {
+    //   const Results = await Promise.all(
+    //     tags.map((tag) =>
+    //       Hashtag.update({ where: { title: tag.toLowerCase() } })
+    //     )
+    //   );
+    //   await post.updateHashtags(Results.map((result) => result[0]));
+    //   //
+    // }
+    return res.status(200).json({ nick: req.user.nick, id: postId });
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json(e);
+  }
+});
+router.get("/read/:postId", async (req, res) => {
   const { postId } = req.params;
   console.log(postId);
   try {
@@ -48,6 +90,15 @@ router.get("/write/:postId", async (req, res) => {
   } catch (e) {
     console.error(e);
     return res.status(400).json(e);
+  }
+});
+router.delete("/remove/:postId", async (req, res) => {
+  const { postId } = req.params;
+  try {
+    await Post.destroy({ where: { id: postId } });
+    return res.send("ok");
+  } catch (e) {
+    console.error(e);
   }
 });
 module.exports = router;

@@ -19,10 +19,16 @@ const ButtonStyle = css`
     css`
       padding: 0.3rem 0.5rem;
       width: 100%;
-    `}${(props) =>
+    `}
+  ${(props) =>
     props.marginTop1rem &&
     css`
       margin-top: 1rem;
+    `}
+    ${(props) =>
+    props.disable &&
+    css`
+      cursor: not-allowed;
     `}
 `;
 const StyleLink = styled(Link)`
@@ -33,7 +39,7 @@ const StyleButton = styled.button`
 `;
 const Button = (props) => {
   return props.to ? (
-    <StyleLink {...props}></StyleLink>
+    <StyleLink {...props} disable={props.disable ? 1 : 0}></StyleLink>
   ) : (
     <StyleButton {...props}></StyleButton>
   );
