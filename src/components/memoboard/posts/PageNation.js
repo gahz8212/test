@@ -4,13 +4,16 @@ import qs from "qs";
 
 import Button from "../../common/Button";
 const PageNationBlock = styled.div`
-  /* background: yellow; */
+  background: white;
   width: 100%;
-  position: absolute;
+  height: 5rem;
+  position: fixed;
   bottom: 0;
+
   /* margin: 0 auto; */
   /* bottom: 0; */
   /* text-align: center; */
+  /* margin-bottom: 2rem; */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -14,6 +14,7 @@ const HeaderBlock = styled.div`
   /* align-items: center; */
 `;
 const LoginBlock = styled(Responsive)`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

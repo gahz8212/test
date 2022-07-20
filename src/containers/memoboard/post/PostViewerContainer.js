@@ -21,7 +21,7 @@ const PostViewerContainer = () => {
     navigate("/");
   };
   const onEdit = () => {
-    setOriginalPost(post);
+    dispatch(setOriginalPost(post));
 
     navigate("/write");
   };

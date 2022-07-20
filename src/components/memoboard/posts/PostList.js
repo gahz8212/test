@@ -29,7 +29,7 @@ const ContentBlock = styled.div`
   font-size: 1.125rem;
   line-height: 1.5;
   margin-bottom: 1rem;
-  height: 200px;
+  height: 100px;
 `;
 
 const PostList = ({ posts, loading, postsError }) => {
