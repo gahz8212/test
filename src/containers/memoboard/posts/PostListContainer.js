@@ -10,11 +10,14 @@ const PostListContainer = () => {
   const tag = searchParams.get("tag");
   const page = parseInt(searchParams.get("page"), 10) || 1;
   const dispatch = useDispatch();
-  const { posts, loading, postsError } = useSelector(({ posts, loading }) => ({
-    posts: posts.posts,
-    loading: loading["posts/LIST_POSTS"],
-    postsError: posts.postsError,
-  }));
+  const { posts, loading, postsError, user } = useSelector(
+    ({ posts, loading, user }) => ({
+      posts: posts.posts,
+      loading: loading["posts/LIST_POSTS"],
+      postsError: posts.postsError,
+      user: user.user,
+    })
+  );
   useEffect(() => {
     dispatch(listPost({ page, tag, nick }));
     return () => {
@@ -27,6 +30,7 @@ const PostListContainer = () => {
       posts={posts}
       loading={loading}
       postsError={postsError}
+      user={user}
     ></PostList>
   );
 };

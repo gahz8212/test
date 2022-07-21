@@ -1,9 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const { User, Post, Hashtag } = require("../models");
+const sanitizeHTML = require("sanitize-html");
 const { isLoggedIn, isNotLoggedIn } = require("./middleWare");
 const contentLengthLimiter = (content) => {
   return content.length < 200 ? content : content.slice(0, 150);
+};
+const sanitizeContent = (content) => {
+  const filter = sanitizeHTML(content, { allowedTags: [] });
+  return filter.length < 15 ? filter : `${filter.slice(0, 15)}...`;
 };
 router.get("/", async (req, res) => {
   const { page, nick, tag } = req.query;
@@ -27,7 +32,7 @@ router.get("/", async (req, res) => {
     });
     const lastPage = Math.ceil(postCount.length / limit);
     res.set("last-page", lastPage);
-
+    posts.map((post) => (post.content = sanitizeContent(post.content)));
     return res.status(200).json(posts);
   } catch (e) {
     console.error(e);

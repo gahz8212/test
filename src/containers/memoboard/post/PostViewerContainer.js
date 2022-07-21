@@ -12,11 +12,14 @@ const PostViewerContainer = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { postId } = useParams();
-  const { post, postError, loading } = useSelector(({ post, loading }) => ({
-    post: post.post,
-    loading: loading["post/READ_POST"],
-    postError: post.postError,
-  }));
+  const { post, postError, loading, user } = useSelector(
+    ({ post, loading, user }) => ({
+      post: post.post,
+      loading: loading["post/READ_POST"],
+      postError: post.postError,
+      user: user.user,
+    })
+  );
   const onGoHome = () => {
     navigate("/");
   };
@@ -44,7 +47,11 @@ const PostViewerContainer = () => {
       dispatch(unloadPost());
     };
   }, [dispatch, postId]);
-
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [navigate, user]);
   return (
     <PostViewer
       post={post}

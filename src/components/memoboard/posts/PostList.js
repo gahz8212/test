@@ -1,11 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Responsive from "../../common/Responsive";
 import SubInfo from "../../common/SubInfo";
 import Tags from "../../common/Tags";
 import { Link } from "react-router-dom";
 
-const PostListBlock = styled(Responsive)``;
+const PostListBlock = styled(Responsive)`
+  ${(props) =>
+    !props.user &&
+    css`
+      margin-top: 5rem;
+    `}
+`;
 const PostItemBlock = styled.div`
   margin: 0 auto;
   width: 70%;
@@ -32,11 +38,11 @@ const ContentBlock = styled.div`
   height: 100px;
 `;
 
-const PostList = ({ posts, loading, postsError }) => {
+const PostList = ({ posts, loading, postsError, user }) => {
   if (postsError) return null;
   if (posts && loading) {
     return (
-      <PostListBlock>
+      <PostListBlock user={user}>
         {posts.map((post) => {
           return (
             <PostItemBlock key={post.id}>
