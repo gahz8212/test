@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User, Post, Hashtag } = require("../models");
+const { isLoggedIn, isNotLoggedIn } = require("./middleWare");
 const contentLengthLimiter = (content) => {
   return content.length < 200 ? content : content.slice(0, 150);
 };
@@ -33,7 +34,7 @@ router.get("/", async (req, res) => {
     return res.status(400).json(e);
   }
 });
-router.post("/write", async (req, res) => {
+router.post("/write", isLoggedIn, async (req, res) => {
   const { title, content, tags } = req.body;
   console.log(title, content, tags);
   try {
@@ -51,7 +52,7 @@ router.post("/write", async (req, res) => {
     return res.status(400).json(e);
   }
 });
-router.patch("/write/:postId", async (req, res) => {
+router.patch("/write/:postId", isLoggedIn, async (req, res) => {
   const { postId } = req.params;
   const { title, content, tags } = req.body;
   // console.log(title, content, tags, postId);
@@ -75,7 +76,7 @@ router.patch("/write/:postId", async (req, res) => {
     return res.status(400).json(e);
   }
 });
-router.get("/read/:postId", async (req, res) => {
+router.get("/read/:postId", isLoggedIn, async (req, res) => {
   const { postId } = req.params;
   console.log(postId);
   try {
@@ -92,7 +93,7 @@ router.get("/read/:postId", async (req, res) => {
     return res.status(400).json(e);
   }
 });
-router.delete("/remove/:postId", async (req, res) => {
+router.delete("/remove/:postId", isLoggedIn, async (req, res) => {
   const { postId } = req.params;
 
   try {

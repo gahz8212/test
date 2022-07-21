@@ -17,6 +17,7 @@ const TagForm = styled.form`
   input {
     flex: 1;
     padding: 0.5rem;
+    overflow: hidden;
   }
   button {
     background: black;

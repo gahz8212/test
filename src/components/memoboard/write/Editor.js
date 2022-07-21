@@ -71,9 +71,11 @@ const Editor = ({ onChangeField, body, title }) => {
   return (
     <EditorBlock>
       <StyleInput
+        type="text"
         placeholder="제목을 입력 하세요"
         onChange={onChangeTitle}
         value={title}
+        autoFocus
       />
 
       <QuillWrapper>

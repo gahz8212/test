@@ -2,22 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import MenuContainer from "../../containers/common/MenuContainer";
-import Responsive from "./Responsive";
+// import Responsive from "./Responsive";
 import logo from "../auth/logo.jpg";
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
   height: 5rem;
   display: flex;
-  /* background: yellow; */
-  /* box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.2); */
-  /* align-items: center; */
+  top: 3rem;
+  background: white;
 `;
-const LoginBlock = styled(Responsive)`
-  position: relative;
+const LoginBlock = styled.div`
+  background: white;
+  width: 90%;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  img {
+    margin-left: 1.5rem;
+  }
 `;
 const Space = styled.div`
   height: 5rem;
